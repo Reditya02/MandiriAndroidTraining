@@ -3,6 +3,7 @@ package com.example.mandiriapps
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import com.example.mandiriapps.adapter.EWalletAdapter
 import com.example.mandiriapps.databinding.ActivityHomeBinding
@@ -19,15 +20,21 @@ class HomeActivity : AppCompatActivity() {
 
         val adapter = EWalletAdapter()
 
-        adapter.setDataEWallet(listOf(
-            EWalletModel(image = R.drawable.ic_baseline_add_24),
-            EWalletModel(image = R.drawable.ic_baseline_arrow_back_24),
-            EWalletModel(image = R.drawable.ic_baseline_mail_24),
-            EWalletModel(image = R.drawable.ic_bg),
-            ))
+        val dummyData = mutableListOf(
+            EWalletModel(image = R.drawable.li, balance = 2000000.0, isConnected = true),
+            EWalletModel(image = R.drawable.orang_lari),
+            EWalletModel(image = R.drawable.logo_bank_mandiri, balance = 5600000.0, isConnected = true),
+            EWalletModel(image = R.drawable.li),
+        )
+
+        adapter.setDataEWallet(dummyData)
 
         binding.apply {
             compEWallet.rvEWallet.adapter = adapter
+            adapter.setOnClickEWallet { data ->
+                dummyData.find { it == data }?.isConnected = true
+                adapter.setDataEWallet(dummyData)
+            }
         }
 
     }
