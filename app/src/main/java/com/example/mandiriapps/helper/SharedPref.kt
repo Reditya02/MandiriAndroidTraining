@@ -14,6 +14,10 @@ class SharedPref(context: Context) {
         return preferences.getString(KEY_TOKEN, "") ?: ""
     }
 
+    fun deleteToken() {
+        preferences.edit().putString(KEY_TOKEN, "").apply()
+    }
+
     companion object {
         private const val SHARED_PREF = "shared_pref"
         private const val KEY_TOKEN = "key_token"

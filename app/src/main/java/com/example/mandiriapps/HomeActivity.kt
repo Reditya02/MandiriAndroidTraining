@@ -1,5 +1,6 @@
 package com.example.mandiriapps
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import com.example.mandiriapps.adapter.EWalletAdapter
 import com.example.mandiriapps.adapter.MenuHomeAdapter
 import com.example.mandiriapps.adapter.SavingAdapter
 import com.example.mandiriapps.databinding.ActivityHomeBinding
+import com.example.mandiriapps.helper.SharedPref
 import com.example.mandiriapps.model.EWalletModel
 import com.example.mandiriapps.model.MenuModel
 import com.example.mandiriapps.model.SavingModel
@@ -27,6 +29,15 @@ class HomeActivity : AppCompatActivity() {
         setupSaving()
         setupMenu()
         setupEWallet()
+
+        binding.btnLogout.setOnClickListener {
+            val pref = SharedPref(this@HomeActivity)
+            pref.deleteToken()
+
+            val intent = Intent(this@HomeActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setupEWallet() {
