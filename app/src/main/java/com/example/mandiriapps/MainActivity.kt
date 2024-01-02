@@ -3,13 +3,15 @@ package com.example.mandiriapps
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Toast
 import com.example.mandiriapps.databinding.ActivityMainBinding
 import com.example.mandiriapps.helper.SharedPref
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -20,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val password = "12345"
 
         pref = SharedPref(this)
 
@@ -28,30 +29,41 @@ class MainActivity : AppCompatActivity() {
             navigateToHome()
 
         binding.apply {
-            btnLogin.setOnClickListener {
-                tilPassword.editText?.let { edt ->
-                    val inPassword = edt.text.toString()
+            btnLogin.setOnClickListener(this@MainActivity)
+            btnRegister.setOnClickListener(this@MainActivity)
+        }
+    }
 
-                    if (inPassword.isEmpty()) {
-                        tilPassword.showError("Masukkan Password")
-                    } else if (inPassword == password) {
-                        tilPassword.error = null
-                        Toast.makeText(this@MainActivity, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
+    override fun onClick(v: View?) {
+        binding.apply {
+            when (v) {
+                btnLogin -> {
+                    val password = "12345"
+                    tilPassword.editText?.let { edt ->
+                        val inPassword = edt.text.toString()
 
-                        val dummyToken = UUID.randomUUID().toString()
-                        pref.saveToken(dummyToken)
+                        if (inPassword.isEmpty()) {
+                            tilPassword.showError("Masukkan Password")
+                        } else if (inPassword == password) {
+                            tilPassword.error = null
+                            Toast.makeText(this@MainActivity, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
 
-                        navigateToHome()
+                            val dummyToken = UUID.randomUUID().toString()
+                            pref.saveToken(dummyToken)
 
-                    } else {
-                        tilPassword.showError("Password salah")
+                            navigateToHome()
+
+                        } else {
+                            tilPassword.showError("Password salah")
+                        }
                     }
                 }
-            }
-            btnRegister.setOnClickListener {
-                startActivity(Intent(this@MainActivity, RegisterActivity::class.java))
+                btnRegister -> {
+                    startActivity(Intent(this@MainActivity, RegisterActivity::class.java))
+                }
             }
         }
+
     }
 
     private fun navigateToHome() {
