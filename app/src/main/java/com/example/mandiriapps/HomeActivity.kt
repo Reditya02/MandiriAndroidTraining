@@ -36,18 +36,41 @@ class HomeActivity : AppCompatActivity() {
             compSaving.rvSaving.adapter = savingAdapter
 
             if (savingAdapter.itemCount != dummySavingData.size) {
-                compSaving.btnShowAll.visibility = View.VISIBLE
+                showBtnShowAll(true)
             } else {
-                compSaving.btnShowAll.visibility = View.GONE
+                showBtnShowAll(false)
             }
 
             compSaving.btnShowAll.setOnClickListener {
-                compSaving.btnShowAll.visibility = View.GONE
+                showBtnShowAll(false)
                 savingAdapter.showAll = true
                 compSaving.rvSaving.adapter = savingAdapter
             }
+
+            compSaving.btnShowLess.setOnClickListener {
+                showBtnShowAll(true)
+                savingAdapter.showAll = false
+                compSaving.rvSaving.adapter = savingAdapter
+            }
+
+            if (dummySavingData.size <= 2) {
+                compSaving.btnShowAll.visibility = View.GONE
+                compSaving.btnShowLess.visibility = View.GONE
+            }
         }
 
+    }
+
+    private fun showBtnShowAll(isVisible: Boolean) {
+        binding.compSaving.apply {
+            if (isVisible) {
+                btnShowAll.visibility = View.VISIBLE
+                btnShowLess.visibility = View.GONE
+            } else {
+                btnShowAll.visibility = View.GONE
+                btnShowLess.visibility = View.VISIBLE
+            }
+        }
     }
 
     private val dummyEWalletData = mutableListOf(
