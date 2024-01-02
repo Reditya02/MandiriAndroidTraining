@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mandiriapps.adapter.EWalletAdapter
+import com.example.mandiriapps.adapter.MenuHomeAdapter
 import com.example.mandiriapps.adapter.SavingAdapter
 import com.example.mandiriapps.databinding.ActivityHomeBinding
 import com.example.mandiriapps.model.EWalletModel
+import com.example.mandiriapps.model.MenuModel
 import com.example.mandiriapps.model.SavingModel
 
 class HomeActivity : AppCompatActivity() {
@@ -20,11 +24,14 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupSaving()
+        setupMenu()
+        setupEWallet()
+    }
+
+    private fun setupEWallet() {
         val eWalletAdapter = EWalletAdapter()
         eWalletAdapter.setDataEWallet(dummyEWalletData)
-
-        val savingAdapter = SavingAdapter()
-        savingAdapter.setData(dummySavingData)
 
         binding.apply {
             compEWallet.rvEWallet.adapter = eWalletAdapter
@@ -32,7 +39,14 @@ class HomeActivity : AppCompatActivity() {
                 dummyEWalletData.find { it == data }?.isConnected = true
                 eWalletAdapter.setDataEWallet(dummyEWalletData)
             }
+        }
+    }
 
+    private fun setupSaving() {
+        val savingAdapter = SavingAdapter()
+        savingAdapter.setData(dummySavingData)
+
+        binding.apply {
             compSaving.rvSaving.adapter = savingAdapter
 
             if (savingAdapter.itemCount != dummySavingData.size) {
@@ -58,7 +72,25 @@ class HomeActivity : AppCompatActivity() {
                 compSaving.btnShowLess.visibility = View.GONE
             }
         }
+    }
 
+    private fun setupMenu() {
+        val menuAdapter = MenuHomeAdapter(dummyHomeMenuData) { text ->
+            Toast.makeText(
+                this@HomeActivity,
+                text,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        binding.compMenuHome.gridHome.apply {
+            adapter = menuAdapter
+            layoutManager = GridLayoutManager(
+                this@HomeActivity,
+                2,
+                RecyclerView.HORIZONTAL,
+                false
+            )
+        }
     }
 
     private fun showBtnShowAll(isVisible: Boolean) {
@@ -85,5 +117,24 @@ class HomeActivity : AppCompatActivity() {
         SavingModel(savingName = "Tabungan B", accountNumber = "1893409", image = R.drawable.ic_cropped_card),
         SavingModel(savingName = "Tabungan C", accountNumber = "1893409", image = R.drawable.ic_cropped_card),
         SavingModel(savingName = "Tabungan D", accountNumber = "1893409", image = R.drawable.ic_cropped_card),
-        )
+    )
+
+    private val dummyHomeMenuData = listOf(
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 1"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 2"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 3"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 4"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 5"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 6"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 7"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 8"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 9"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 10"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 11"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 12"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 13"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 14"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 15"),
+        MenuModel(image = R.drawable.li, menuTitle = "Menu 16"),
+    )
 }

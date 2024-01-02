@@ -33,7 +33,7 @@ class SavingAdapter : RecyclerView.Adapter<SavingAdapter.Holder>() {
         }
     }
 
-    inner class Holder(private val binding: ItemSavingBinding) : RecyclerView.ViewHolder( binding.root) {
+    inner class Holder(private val binding: ItemSavingBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: SavingModel) {
             binding.apply {
                 tvTitle.text = data.savingName
