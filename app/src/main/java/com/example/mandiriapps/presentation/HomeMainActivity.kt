@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import com.example.mandiriapps.R
 import com.example.mandiriapps.databinding.ActivityHomeMainBinding
 import com.example.mandiriapps.helper.SharedPref
+import com.example.mandiriapps.presentation.home.HomeFragment
+import com.example.mandiriapps.presentation.message.MessageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeMainActivity : AppCompatActivity() {

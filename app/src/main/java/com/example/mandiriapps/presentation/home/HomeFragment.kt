@@ -1,6 +1,5 @@
-package com.example.mandiriapps.presentation
+package com.example.mandiriapps.presentation.home
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import com.example.mandiriapps.adapter.EWalletAdapter
 import com.example.mandiriapps.adapter.MenuHomeAdapter
 import com.example.mandiriapps.adapter.SavingAdapter
 import com.example.mandiriapps.databinding.FragmentHomeBinding
-import com.example.mandiriapps.helper.SharedPref
 import com.example.mandiriapps.model.EWalletModel
 import com.example.mandiriapps.model.MenuModel
 import com.example.mandiriapps.model.SavingModel
@@ -37,15 +35,6 @@ class HomeFragment : Fragment() {
         setupSaving()
         setupMenu()
         setupEWallet()
-
-//        binding.btnLogout.setOnClickListener {
-//            val pref = SharedPref(context)
-//            pref.deleteToken()
-//
-//            val intent = Intent(this@HomeActivity, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
     }
 
     private fun setupEWallet() {
