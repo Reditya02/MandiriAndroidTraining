@@ -1,13 +1,11 @@
 package com.example.mandiriapps.adapter
 
 import android.content.Intent
-import android.opengl.Visibility
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mandiriapps.HomeActivity
+import com.example.mandiriapps.presentation.HomeActivity
 import com.example.mandiriapps.databinding.ItemEwalletBinding
 import com.example.mandiriapps.model.EWalletModel
 import java.text.NumberFormat

@@ -1,12 +1,13 @@
-package com.example.mandiriapps
+package com.example.mandiriapps.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import com.example.mandiriapps.RegisterActivity.Companion.KEY_ADDRESS
-import com.example.mandiriapps.RegisterActivity.Companion.KEY_AGE
-import com.example.mandiriapps.RegisterActivity.Companion.KEY_GENDER
-import com.example.mandiriapps.RegisterActivity.Companion.KEY_NAME
+import com.example.mandiriapps.R
+import com.example.mandiriapps.presentation.RegisterActivity.Companion.KEY_ADDRESS
+import com.example.mandiriapps.presentation.RegisterActivity.Companion.KEY_AGE
+import com.example.mandiriapps.presentation.RegisterActivity.Companion.KEY_GENDER
+import com.example.mandiriapps.presentation.RegisterActivity.Companion.KEY_NAME
 import com.example.mandiriapps.databinding.ActivityProfileBinding
 
 class ProfileActivity : AppCompatActivity() {

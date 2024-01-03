@@ -1,43 +1,51 @@
-package com.example.mandiriapps
+package com.example.mandiriapps.presentation
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mandiriapps.R
 import com.example.mandiriapps.adapter.EWalletAdapter
 import com.example.mandiriapps.adapter.MenuHomeAdapter
 import com.example.mandiriapps.adapter.SavingAdapter
-import com.example.mandiriapps.databinding.ActivityHomeBinding
+import com.example.mandiriapps.databinding.FragmentHomeBinding
 import com.example.mandiriapps.helper.SharedPref
 import com.example.mandiriapps.model.EWalletModel
 import com.example.mandiriapps.model.MenuModel
 import com.example.mandiriapps.model.SavingModel
 
-class HomeActivity : AppCompatActivity() {
+class HomeFragment : Fragment() {
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var binding: ActivityHomeBinding
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupSaving()
         setupMenu()
         setupEWallet()
 
-        binding.btnLogout.setOnClickListener {
-            val pref = SharedPref(this@HomeActivity)
-            pref.deleteToken()
-
-            val intent = Intent(this@HomeActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+//        binding.btnLogout.setOnClickListener {
+//            val pref = SharedPref(context)
+//            pref.deleteToken()
+//
+//            val intent = Intent(this@HomeActivity, MainActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
     }
 
     private fun setupEWallet() {
@@ -88,7 +96,7 @@ class HomeActivity : AppCompatActivity() {
     private fun setupMenu() {
         val menuAdapter = MenuHomeAdapter(dummyHomeMenuData) { text ->
             Toast.makeText(
-                this@HomeActivity,
+                activity,
                 text,
                 Toast.LENGTH_SHORT
             ).show()
@@ -96,7 +104,7 @@ class HomeActivity : AppCompatActivity() {
         binding.compMenuHome.gridHome.apply {
             adapter = menuAdapter
             layoutManager = GridLayoutManager(
-                this@HomeActivity,
+                activity,
                 2,
                 RecyclerView.HORIZONTAL,
                 false
@@ -148,4 +156,9 @@ class HomeActivity : AppCompatActivity() {
         MenuModel(image = R.drawable.li, menuTitle = "Menu 15"),
         MenuModel(image = R.drawable.li, menuTitle = "Menu 16"),
     )
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.mandiriapps
+package com.example.mandiriapps.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun navigateToHome() {
-        val intent = Intent(this@MainActivity, HomeActivity::class.java)
+        val intent = Intent(this@MainActivity, HomeMainActivity::class.java)
         startActivity(intent)
         finish()
     }

@@ -1,10 +1,10 @@
-package com.example.mandiriapps
+package com.example.mandiriapps.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
+import com.example.mandiriapps.R
 import com.example.mandiriapps.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
