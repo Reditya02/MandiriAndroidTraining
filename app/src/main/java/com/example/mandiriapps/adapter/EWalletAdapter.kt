@@ -1,11 +1,9 @@
 package com.example.mandiriapps.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mandiriapps.presentation.HomeActivity
 import com.example.mandiriapps.databinding.ItemEwalletBinding
 import com.example.mandiriapps.model.EWalletModel
 import java.text.NumberFormat
@@ -34,7 +32,6 @@ class EWalletAdapter : RecyclerView.Adapter<EWalletAdapter.Holder>() {
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val data = listEWallet[position]
-        val intent = Intent(holder.binding.root.context, HomeActivity::class.java)
         holder.binding.apply {
             ivIcon.setImageResource(data.image)
             if (data.isConnected) {
