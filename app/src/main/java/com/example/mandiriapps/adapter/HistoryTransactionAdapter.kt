@@ -1,15 +1,19 @@
 package com.example.mandiriapps.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mandiriapps.R
 import com.example.mandiriapps.databinding.ItemHistoryTransactionBinding
 import com.example.mandiriapps.model.HisoryTransactionModel
+import com.example.mandiriapps.model.statusTransaction
 import java.text.NumberFormat
 import java.util.*
 
 class HistoryTransactionAdapter(
-    private val listData: List<HisoryTransactionModel>
+    private val listData: List<HisoryTransactionModel>,
+    private val onClick: (HisoryTransactionModel) -> Unit
 ) : RecyclerView.Adapter<HistoryTransactionAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = ItemHistoryTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,6 +22,7 @@ class HistoryTransactionAdapter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.bindData(listData[position])
+        holder.binding.root.setOnClickListener{ onClick(listData[position]) }
     }
 
     override fun getItemCount(): Int = listData.size
@@ -29,6 +34,28 @@ class HistoryTransactionAdapter(
                 tvBalance.text = rupiah(data.balanceTransaction.toDouble())
                 tvSubtitle.text = data.subtitleTransaction
                 tvTime.text = data.date
+                ivIcon.setImageResource(data.iconTransaction)
+
+                tvStatus.apply {
+                    when (data.statusTransaction) {
+                        statusTransaction.Berhasil.value -> {
+                            text = "Berhasil"
+                            setTextColor(binding.root.context.resources.getColor(R.color.green))
+                        }
+                        statusTransaction.Gagal.value -> {
+                            text = "Gagal"
+                            setTextColor(binding.root.context.resources.getColor(R.color.red))
+                        }
+                        statusTransaction.Pending.value -> {
+                            text = "Pending"
+                            setTextColor(binding.root.context.resources.getColor(R.color.purple_500))
+                        }
+                        else -> {
+                            text = "Pending"
+                            setTextColor(binding.root.context.resources.getColor(R.color.purple_500))
+                        }
+                    }
+                }
 
             }
         }
