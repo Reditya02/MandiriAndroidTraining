@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.SettingsFragment"
-    android:gravity="center">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Settings" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <include
+            android:id="@+id/compAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/component_settings_compartment" />
+
+        <include
+            android:id="@+id/compFeature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/component_settings_compartment" />
+
+        <include
+            android:id="@+id/compSecurity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/component_settings_compartment" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

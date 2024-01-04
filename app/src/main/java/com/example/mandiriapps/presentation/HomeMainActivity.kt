@@ -44,11 +44,11 @@ class HomeMainActivity : AppCompatActivity() {
                     replaceFragment(PromoFragment())
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.navigationLogout -> {
-                    replaceFragment(ProfileFragment())
+                R.id.navigationSettings -> {
+                    replaceFragment(SettingsFragment())
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.navigationSettings -> {
+                R.id.navigationLogout -> {
                     val pref = SharedPref(this@HomeMainActivity)
                     pref.deleteToken()
 
