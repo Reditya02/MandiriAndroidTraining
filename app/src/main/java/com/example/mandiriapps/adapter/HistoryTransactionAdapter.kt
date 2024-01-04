@@ -1,13 +1,12 @@
 package com.example.mandiriapps.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mandiriapps.R
 import com.example.mandiriapps.databinding.ItemHistoryTransactionBinding
 import com.example.mandiriapps.model.HisoryTransactionModel
-import com.example.mandiriapps.model.statusTransaction
+import com.example.mandiriapps.model.StatusTransaction
 import java.text.NumberFormat
 import java.util.*
 
@@ -38,15 +37,15 @@ class HistoryTransactionAdapter(
 
                 tvStatus.apply {
                     when (data.statusTransaction) {
-                        statusTransaction.Berhasil.value -> {
+                        StatusTransaction.Berhasil.value -> {
                             text = "Berhasil"
                             setTextColor(binding.root.context.resources.getColor(R.color.green))
                         }
-                        statusTransaction.Gagal.value -> {
+                        StatusTransaction.Gagal.value -> {
                             text = "Gagal"
                             setTextColor(binding.root.context.resources.getColor(R.color.red))
                         }
-                        statusTransaction.Pending.value -> {
+                        StatusTransaction.Pending.value -> {
                             text = "Pending"
                             setTextColor(binding.root.context.resources.getColor(R.color.purple_500))
                         }
