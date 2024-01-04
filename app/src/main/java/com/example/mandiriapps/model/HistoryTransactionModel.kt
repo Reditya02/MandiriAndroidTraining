@@ -1,6 +1,6 @@
 package com.example.mandiriapps.model
 
-data class HisoryTransactionModel(
+data class HistoryTransactionModel(
     val date: String,
     val titleTransaction: String,
     val balanceTransaction: String,

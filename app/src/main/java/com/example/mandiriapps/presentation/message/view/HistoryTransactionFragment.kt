@@ -2,7 +2,6 @@ package com.example.mandiriapps.presentation.message.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mandiriapps.R
 import com.example.mandiriapps.adapter.HistoryTransactionAdapter
 import com.example.mandiriapps.databinding.FragmentHistoryTransactionBinding
-import com.example.mandiriapps.model.HisoryTransactionModel
-import com.example.mandiriapps.presentation.HomeMainActivity
+import com.example.mandiriapps.model.HistoryTransactionModel
 
 class HistoryTransactionFragment : Fragment() {
 
@@ -42,7 +40,7 @@ class HistoryTransactionFragment : Fragment() {
     }
 
     private val historyTransactionDummyData = listOf(
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "12 Januari 2023",
             titleTransaction = "Transfer",
             balanceTransaction = "100000",
@@ -50,7 +48,7 @@ class HistoryTransactionFragment : Fragment() {
             iconTransaction = R.drawable.ic_baseline_mail_24,
             statusTransaction = 0
         ),
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "12 Januari 2023",
             titleTransaction = "Transfer Rekening",
             balanceTransaction = "100000",
@@ -58,7 +56,7 @@ class HistoryTransactionFragment : Fragment() {
             iconTransaction = R.drawable.ic_baseline_add_24,
             statusTransaction = 2
         ),
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "14 Januari 2023",
             titleTransaction = "Transfer",
             balanceTransaction = "100000",
@@ -66,7 +64,7 @@ class HistoryTransactionFragment : Fragment() {
             iconTransaction = R.drawable.ic_baseline_arrow_back_24,
             statusTransaction = 1
         ),
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "12 Januari 2023",
             titleTransaction = "Transfer",
             balanceTransaction = "100000",
@@ -74,7 +72,7 @@ class HistoryTransactionFragment : Fragment() {
             iconTransaction = R.drawable.ic_baseline_credit_card_24,
             statusTransaction = 0
         ),
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "12 Januari 2023",
             titleTransaction = "Transfer",
             balanceTransaction = "100000",
@@ -82,7 +80,7 @@ class HistoryTransactionFragment : Fragment() {
             iconTransaction = R.drawable.ic_baseline_person_24,
             statusTransaction = 0
         ),
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "12 Januari 2023",
             titleTransaction = "Transfer",
             balanceTransaction = "100000",
@@ -90,7 +88,7 @@ class HistoryTransactionFragment : Fragment() {
             iconTransaction = R.drawable.ic_baseline_stop_circle_24,
             statusTransaction = 0
         ),
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "12 Januari 2023",
             titleTransaction = "Transfer",
             balanceTransaction = "100000",
@@ -98,7 +96,7 @@ class HistoryTransactionFragment : Fragment() {
             iconTransaction = R.drawable.ic_baseline_arrow_back_24,
             statusTransaction = 0
         ),
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "12 Januari 2023",
             titleTransaction = "Transfer",
             balanceTransaction = "100000",
@@ -106,7 +104,7 @@ class HistoryTransactionFragment : Fragment() {
             iconTransaction = R.drawable.ic_baseline_add_24,
             statusTransaction = 0
         ),
-        HisoryTransactionModel(
+        HistoryTransactionModel(
             date = "12 Januari 2023",
             titleTransaction = "Transfer",
             balanceTransaction = "100000",

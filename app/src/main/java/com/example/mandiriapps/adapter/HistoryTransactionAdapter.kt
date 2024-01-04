@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mandiriapps.R
 import com.example.mandiriapps.databinding.ItemHistoryTransactionBinding
-import com.example.mandiriapps.model.HisoryTransactionModel
+import com.example.mandiriapps.model.HistoryTransactionModel
 import com.example.mandiriapps.model.StatusTransaction
 import java.text.NumberFormat
 import java.util.*
 
 class HistoryTransactionAdapter(
-    private val listData: List<HisoryTransactionModel>,
-    private val onClick: (HisoryTransactionModel) -> Unit
+    private val listData: List<HistoryTransactionModel>,
+    private val onClick: (HistoryTransactionModel) -> Unit
 ) : RecyclerView.Adapter<HistoryTransactionAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = ItemHistoryTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,7 +27,7 @@ class HistoryTransactionAdapter(
     override fun getItemCount(): Int = listData.size
 
     class Holder(val binding: ItemHistoryTransactionBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindData(data: HisoryTransactionModel) {
+        fun bindData(data: HistoryTransactionModel) {
             binding.apply {
                 tvTitle.text = data.titleTransaction
                 tvBalance.text = rupiah(data.balanceTransaction.toDouble())
