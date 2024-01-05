@@ -11,7 +11,7 @@ import java.text.NumberFormat
 import java.util.*
 
 class HistoryTransactionAdapter(
-    private val listData: List<HistoryTransactionModel>,
+    private var listData: List<HistoryTransactionModel>,
     private val onClick: (HistoryTransactionModel) -> Unit
 ) : RecyclerView.Adapter<HistoryTransactionAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -25,6 +25,11 @@ class HistoryTransactionAdapter(
     }
 
     override fun getItemCount(): Int = listData.size
+
+    fun filterTransactionData(updatedData: List<HistoryTransactionModel>) {
+        listData = updatedData
+        notifyDataSetChanged()
+    }
 
     class Holder(val binding: ItemHistoryTransactionBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(data: HistoryTransactionModel) {

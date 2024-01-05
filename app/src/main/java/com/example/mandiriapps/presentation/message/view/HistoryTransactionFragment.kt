@@ -6,13 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mandiriapps.R
 import com.example.mandiriapps.adapter.HistoryTransactionAdapter
 import com.example.mandiriapps.databinding.FragmentHistoryTransactionBinding
 import com.example.mandiriapps.model.HistoryTransactionModel
+import com.example.mandiriapps.model.StatusTransaction
 
 class HistoryTransactionFragment : Fragment() {
+
+    private lateinit var historyAdapter: HistoryTransactionAdapter
 
     private var _binding: FragmentHistoryTransactionBinding? = null
     private val binding get() = _binding!!
@@ -28,15 +35,49 @@ class HistoryTransactionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRvHistoryTransaction()
+        val listItem = mutableListOf<String>()
+        listItem.add("Semua")
+        StatusTransaction.values().forEach {
+            listItem.add(it.toString())
+        }
+
+
+        binding.spFilterTransaction.apply {
+            adapter = ArrayAdapter(requireContext(), R.layout.list_item, listItem)
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (position > 0) {
+                        val spValue: Int = position - 1
+                        historyTransactionDummyData.filter {
+                            it.statusTransaction == spValue
+                        }.also {
+                            historyAdapter.filterTransactionData(it)
+                        }
+                    } else {
+                        historyAdapter.filterTransactionData(historyTransactionDummyData)
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+        }
     }
 
     private fun setupRvHistoryTransaction() {
-        val adapter = HistoryTransactionAdapter(historyTransactionDummyData) {
+        historyAdapter = HistoryTransactionAdapter(historyTransactionDummyData) {
             val intent = Intent(activity, DetailHistoryTransactionActivity::class.java)
             intent.putExtra(DetailHistoryTransactionActivity.KEY_TRANSACTION, it)
             startActivity(intent)
         }
-        binding.rcHistoryTransaction.adapter = adapter
+        binding.rcHistoryTransaction.adapter = historyAdapter
         binding.rcHistoryTransaction.layoutManager = LinearLayoutManager(activity)
     }
 
