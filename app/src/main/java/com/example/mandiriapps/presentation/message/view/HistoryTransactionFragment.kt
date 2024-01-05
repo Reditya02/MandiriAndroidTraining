@@ -33,6 +33,7 @@ class HistoryTransactionFragment : Fragment() {
     private fun setupRvHistoryTransaction() {
         val adapter = HistoryTransactionAdapter(historyTransactionDummyData) {
             val intent = Intent(activity, DetailHistoryTransactionActivity::class.java)
+            intent.putExtra(DetailHistoryTransactionActivity.KEY_TRANSACTION, it)
             startActivity(intent)
         }
         binding.rcHistoryTransaction.adapter = adapter
