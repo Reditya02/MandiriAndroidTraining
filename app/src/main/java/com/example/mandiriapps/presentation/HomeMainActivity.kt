@@ -64,7 +64,8 @@ class HomeMainActivity : AppCompatActivity() {
                     val dialog = ConfirmationDialogUtil(this@HomeMainActivity)
                     dialog.showConfirmationDialog(
                         title = "Apakah yakin keluar?",
-                        icon = R.raw.animation_exit,
+//                        icon = R.raw.animation_exit,
+                        icon = R.drawable.ic_baseline_mail_24,
                         onConfirm = { logout() },
                         onCancel = {
                             Toast.makeText(

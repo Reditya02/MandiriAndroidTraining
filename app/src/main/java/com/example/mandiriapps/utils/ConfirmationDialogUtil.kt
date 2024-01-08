@@ -26,7 +26,8 @@ class ConfirmationDialogUtil(private val context: Context) {
 
             icon?.let {
                 ivIcon.apply {
-                    setAnimation(it)
+//                    setAnimation(it)
+                    setImageResource(it)
                     visibility = View.VISIBLE
                 }
             }
@@ -41,9 +42,6 @@ class ConfirmationDialogUtil(private val context: Context) {
                 alertDialog.dismiss()
             }
         }
-
-
-
         alertDialog.show()
     }
 }

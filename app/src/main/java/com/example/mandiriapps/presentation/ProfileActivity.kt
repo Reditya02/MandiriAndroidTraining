@@ -3,6 +3,7 @@ package com.example.mandiriapps.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import com.bumptech.glide.Glide
 import com.example.mandiriapps.R
 import com.example.mandiriapps.presentation.RegisterActivity.Companion.KEY_ADDRESS
 import com.example.mandiriapps.presentation.RegisterActivity.Companion.KEY_AGE
@@ -23,6 +24,11 @@ class ProfileActivity : AppCompatActivity() {
         val age = intent.getStringExtra(KEY_AGE)
         val address = intent.getStringExtra(KEY_ADDRESS)
         val gender = intent.getStringExtra(KEY_GENDER)
+
+        Glide.with(this)
+            .load("https://images.bisnis.com/posts/2022/02/25/1504876/logo-livin.jpg")
+            .circleCrop()
+            .into(binding.ivProfile)
 
         binding.apply {
             edtName.setText(name)

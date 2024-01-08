@@ -16,6 +16,7 @@ import com.example.mandiriapps.adapter.HistoryTransactionAdapter
 import com.example.mandiriapps.databinding.FragmentHistoryTransactionBinding
 import com.example.mandiriapps.model.HistoryTransactionModel
 import com.example.mandiriapps.model.StatusTransaction
+import com.example.mandiriapps.utils.ConfirmationDialogUtil
 
 class HistoryTransactionFragment : Fragment() {
 
@@ -73,12 +74,22 @@ class HistoryTransactionFragment : Fragment() {
 
     private fun setupRvHistoryTransaction() {
         historyAdapter = HistoryTransactionAdapter(historyTransactionDummyData) {
-            val intent = Intent(activity, DetailHistoryTransactionActivity::class.java)
-            intent.putExtra(DetailHistoryTransactionActivity.KEY_TRANSACTION, it)
-            startActivity(intent)
+            val dialog = ConfirmationDialogUtil(requireContext())
+            dialog.showConfirmationDialog(
+                title = it.titleTransaction,
+                icon = it.iconTransaction,
+                onConfirm = { toDetailTransaction(it) },
+                onCancel = {}
+            )
         }
         binding.rcHistoryTransaction.adapter = historyAdapter
         binding.rcHistoryTransaction.layoutManager = LinearLayoutManager(activity)
+    }
+
+    private fun toDetailTransaction(data: HistoryTransactionModel) {
+        val intent = Intent(activity, DetailHistoryTransactionActivity::class.java)
+        intent.putExtra(DetailHistoryTransactionActivity.KEY_TRANSACTION, data)
+        startActivity(intent)
     }
 
     private val historyTransactionDummyData = listOf(

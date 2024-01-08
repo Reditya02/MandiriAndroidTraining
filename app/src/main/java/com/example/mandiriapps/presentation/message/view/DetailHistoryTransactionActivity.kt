@@ -1,12 +1,7 @@
 package com.example.mandiriapps.presentation.message.view
 
-import android.content.Intent
-import android.os.Build
-import android.os.Build.VERSION
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.example.mandiriapps.R
 import com.example.mandiriapps.databinding.ActivityDetailHistoryTransactionBinding
 import com.example.mandiriapps.model.HistoryTransactionModel
 import com.example.mandiriapps.model.StatusTransaction
@@ -22,8 +17,6 @@ class DetailHistoryTransactionActivity : AppCompatActivity() {
         val data = intent.getParcelableExtra<HistoryTransactionModel>(KEY_TRANSACTION)
 
         data?.let { bindUI(it) }
-
-
     }
 
     private fun bindUI(data: HistoryTransactionModel) {
