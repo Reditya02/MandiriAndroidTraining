@@ -32,21 +32,6 @@ class HomeMainActivity : AppCompatActivity() {
             R.id.navigationHome
     }
 
-    private fun showDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder
-            .setTitle("Apakah yakin")
-            .setMessage("ingin keluar dari livin?")
-            .setPositiveButton("Ya") { _, _ ->
-                logout()
-            }
-            .setNegativeButton("Tidak") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .create()
-            .show()
-    }
-
     private fun logout() {
         val pref = SharedPref(this@HomeMainActivity)
         pref.deleteToken()
