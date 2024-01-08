@@ -4,12 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.mandiriapps.R
 import com.example.mandiriapps.databinding.ActivityHomeMainBinding
 import com.example.mandiriapps.helper.SharedPref
 import com.example.mandiriapps.presentation.home.HomeFragment
 import com.example.mandiriapps.presentation.message.MessageFragment
+import com.example.mandiriapps.utils.ConfirmationDialogUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeMainActivity : AppCompatActivity() {
@@ -27,6 +30,30 @@ class HomeMainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) binding.bottomNavigation.selectedItemId =
             R.id.navigationHome
+    }
+
+    private fun showDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder
+            .setTitle("Apakah yakin")
+            .setMessage("ingin keluar dari livin?")
+            .setPositiveButton("Ya") { _, _ ->
+                logout()
+            }
+            .setNegativeButton("Tidak") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+    }
+
+    private fun logout() {
+        val pref = SharedPref(this@HomeMainActivity)
+        pref.deleteToken()
+
+        val intent = Intent(this@HomeMainActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private val onNavigationItemSelectedListener =
@@ -49,12 +76,18 @@ class HomeMainActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigationLogout -> {
-                    val pref = SharedPref(this@HomeMainActivity)
-                    pref.deleteToken()
-
-                    val intent = Intent(this@HomeMainActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    val dialog = ConfirmationDialogUtil(this@HomeMainActivity)
+                    dialog.showConfirmationDialog(
+                        title = "Apakah yakin keluar?",
+                        onConfirm = { logout() },
+                        onCancel = {
+                            Toast.makeText(
+                                this@HomeMainActivity,
+                                "Dialog cancel",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
                     return@OnNavigationItemSelectedListener true
                 }
                 else -> {
@@ -63,7 +96,7 @@ class HomeMainActivity : AppCompatActivity() {
             }
         }
 
-    fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
