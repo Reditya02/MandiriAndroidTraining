@@ -26,7 +26,7 @@ class ConfirmationDialogUtil(private val context: Context) {
 
             icon?.let {
                 ivIcon.apply {
-                    setBackgroundResource(icon)
+                    setAnimation(it)
                     visibility = View.VISIBLE
                 }
             }
