@@ -12,26 +12,22 @@ import com.example.mandiriapps.R
 import com.example.mandiriapps.adapter.EWalletAdapter
 import com.example.mandiriapps.adapter.MenuHomeAdapter
 import com.example.mandiriapps.adapter.SavingAdapter
+import com.example.mandiriapps.base.BaseFragment
 import com.example.mandiriapps.databinding.FragmentHomeBinding
 import com.example.mandiriapps.model.EWalletModel
 import com.example.mandiriapps.model.MenuModel
 import com.example.mandiriapps.model.SavingModel
 
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun setupView() {
         setupSaving()
         setupMenu()
         setupEWallet()
@@ -145,9 +141,4 @@ class HomeFragment : Fragment() {
         MenuModel(image = R.drawable.li, menuTitle = "Menu 15"),
         MenuModel(image = R.drawable.li, menuTitle = "Menu 16"),
     )
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
