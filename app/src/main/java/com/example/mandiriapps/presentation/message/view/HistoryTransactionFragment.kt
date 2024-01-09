@@ -13,29 +13,29 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mandiriapps.R
 import com.example.mandiriapps.adapter.HistoryTransactionAdapter
+import com.example.mandiriapps.base.BaseFragment
 import com.example.mandiriapps.databinding.FragmentHistoryTransactionBinding
 import com.example.mandiriapps.model.HistoryTransactionModel
 import com.example.mandiriapps.model.StatusTransaction
 import com.example.mandiriapps.utils.ConfirmationDialogUtil
 
-class HistoryTransactionFragment : Fragment() {
+class HistoryTransactionFragment : BaseFragment<FragmentHistoryTransactionBinding>() {
 
     private lateinit var historyAdapter: HistoryTransactionAdapter
 
-    private var _binding: FragmentHistoryTransactionBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHistoryTransactionBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentHistoryTransactionBinding {
+        return FragmentHistoryTransactionBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setupView() {
         setupRvHistoryTransaction()
+        setupSpinner()
+    }
+
+    private fun setupSpinner() {
         val listItem = mutableListOf<String>()
         listItem.add("Semua")
         StatusTransaction.values().forEach {

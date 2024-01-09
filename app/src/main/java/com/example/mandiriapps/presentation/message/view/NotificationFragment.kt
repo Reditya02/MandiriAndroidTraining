@@ -1,32 +1,23 @@
 package com.example.mandiriapps.presentation.message.view
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.example.mandiriapps.R
 import com.example.mandiriapps.adapter.NotificationAdapter
+import com.example.mandiriapps.base.BaseFragment
 import com.example.mandiriapps.databinding.FragmentNotificationBinding
 import com.example.mandiriapps.model.NotificationModel
 
-class NotificationFragment : Fragment() {
-    private var _binding: FragmentNotificationBinding? = null
-    private val binding get() = _binding!!
+class NotificationFragment : BaseFragment<FragmentNotificationBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentNotificationBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentNotificationBinding {
+        return FragmentNotificationBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun setupView() {
         val notificationAdapter = NotificationAdapter(dummyListNotification)
         binding.rvNotification.apply {
             adapter = notificationAdapter

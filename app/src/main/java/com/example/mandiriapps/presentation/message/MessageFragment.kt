@@ -1,31 +1,22 @@
 package com.example.mandiriapps.presentation.message
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.example.mandiriapps.R
 import com.example.mandiriapps.adapter.MessageTabAdapter
+import com.example.mandiriapps.base.BaseFragment
 import com.example.mandiriapps.databinding.FragmentMessageBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class MessageFragment : Fragment() {
+class MessageFragment : BaseFragment<FragmentMessageBinding>() {
 
-    private var _binding: FragmentMessageBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMessageBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentMessageBinding {
+        return FragmentMessageBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun setupView() {
         setupTabView()
     }
 
@@ -37,11 +28,6 @@ class MessageFragment : Fragment() {
                 tab.text = TAB_TITLES[position]
             }.attach()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

@@ -8,25 +8,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mandiriapps.R
 import com.example.mandiriapps.adapter.SettingsAdapter
+import com.example.mandiriapps.base.BaseFragment
 import com.example.mandiriapps.databinding.FragmentSettingsBinding
 import com.example.mandiriapps.model.CompartmentSettingsModel
 import com.example.mandiriapps.model.SettingsModel
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
-    private var _binding: FragmentSettingsBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentSettingsBinding {
+        return FragmentSettingsBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setupView() {
         setupAccountRecyclerView()
         setupFeatureRecyclerView()
         setupSecurityRecyclerView()
