@@ -9,21 +9,22 @@ import android.widget.Toast
 import com.example.mandiriapps.databinding.ActivityMainBinding
 import com.example.mandiriapps.helper.SharedPref
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var pref: SharedPref
+    @Inject
+    lateinit var pref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        pref = SharedPref(this)
 
         if (checkAvailableToken())
             navigateToHome()

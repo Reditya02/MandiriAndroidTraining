@@ -14,10 +14,16 @@ import com.example.mandiriapps.presentation.home.HomeFragment
 import com.example.mandiriapps.presentation.message.MessageFragment
 import com.example.mandiriapps.utils.ConfirmationDialogUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeMainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeMainBinding
+
+    @Inject
+    lateinit var pref: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +39,6 @@ class HomeMainActivity : AppCompatActivity() {
     }
 
     private fun logout() {
-        val pref = SharedPref(this@HomeMainActivity)
         pref.deleteToken()
 
         val intent = Intent(this@HomeMainActivity, MainActivity::class.java)
